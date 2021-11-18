@@ -1,0 +1,41 @@
+{
+  "name": "grati-box-back",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/server.js",
+    "start:dev": "node ./src/server.js",
+    "start:watch": "npx nodemon ./src/server.js",
+    "start:prod": "NODE_ENV=production node ./src/server.js",
+    "test": "NODE_ENV=test npx jest --run-in-band",
+    "test:watch": "NODE_ENV=test npx jest --run-in-band --watch",
+    "deploy": "git push heroku main",
+    "logs": "heroku logs --tail"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "joi": "^17.4.2",
+    "joi-translation-pt-br": "^0.0.6",
+    "pg": "^8.7.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.16.4",
+    "@babel/preset-env": "^7.16.4",
+    "babel-jest": "^27.3.1",
+    "eslint": "^8.2.0",
+    "faker": "^5.5.3",
+    "husky": "^7.0.4",
+    "jest": "^27.3.1",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.1.6"
+  }
+}
