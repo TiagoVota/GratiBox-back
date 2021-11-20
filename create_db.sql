@@ -21,10 +21,11 @@ CREATE TABLE "plans" (
 
 
 
-CREATE TABLE "deliveries" (
+CREATE TABLE "frequencies" (
 	"id" serial NOT NULL,
-	"name" varchar(42) NOT NULL UNIQUE,
-	CONSTRAINT "deliveries_pk" PRIMARY KEY ("id")
+	"week_day" varchar(42),
+	"mounth_day" varchar(42),
+	CONSTRAINT "frequencies_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
@@ -56,9 +57,9 @@ CREATE TABLE "subscriptions" (
 	"id" serial NOT NULL,
 	"user_id" integer NOT NULL,
 	"plan_id" integer NOT NULL,
-	"delivery_id" integer NOT NULL,
+	"frequency_id" integer NOT NULL,
 	"date_start" timestamp with time zone NOT NULL DEFAULT 'now()',
-	"date_end" timestamp with time zone DEFAULT NULL,
+	"date_end" timestamp with time zone,
 	CONSTRAINT "subscriptions_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -110,7 +111,7 @@ ALTER TABLE "sessions" ADD CONSTRAINT "sessions_fk0" FOREIGN KEY ("user_id") REF
 
 ALTER TABLE "subscriptions" ADD CONSTRAINT "subscriptions_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("id");
 ALTER TABLE "subscriptions" ADD CONSTRAINT "subscriptions_fk1" FOREIGN KEY ("plan_id") REFERENCES "plans"("id");
-ALTER TABLE "subscriptions" ADD CONSTRAINT "subscriptions_fk2" FOREIGN KEY ("delivery_id") REFERENCES "deliveries"("id");
+ALTER TABLE "subscriptions" ADD CONSTRAINT "subscriptions_fk2" FOREIGN KEY ("frequency_id") REFERENCES "frequencies"("id");
 
 ALTER TABLE "signatures_products" ADD CONSTRAINT "signatures_products_fk0" FOREIGN KEY ("subscription_id") REFERENCES "subscriptions"("id");
 ALTER TABLE "signatures_products" ADD CONSTRAINT "signatures_products_fk1" FOREIGN KEY ("product_id") REFERENCES "products"("id");

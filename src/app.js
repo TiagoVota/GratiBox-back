@@ -1,6 +1,8 @@
 import cors from 'cors'
 import express from 'express'
 
+import { sendSignUp } from './controllers/signUp.js'
+
 
 const app = express()
 
@@ -14,6 +16,8 @@ app.use(express.json())
   quer coisa. Essa é uma prática de bom tom?
 */
 app.get('/status', (_, res) => res.sendStatus(200))
+
+app.post('/sign-up', sendSignUp)
 
 
 export default app
