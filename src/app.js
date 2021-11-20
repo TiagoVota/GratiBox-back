@@ -2,6 +2,7 @@ import cors from 'cors'
 import express from 'express'
 
 import { sendSignUp } from './controllers/signUp.js'
+import { makeLogin } from './controllers/login.js'
 
 
 const app = express()
@@ -18,6 +19,7 @@ app.use(express.json())
 app.get('/status', (_, res) => res.sendStatus(200))
 
 app.post('/sign-up', sendSignUp)
+app.post('/login', makeLogin)
 
 
 export default app

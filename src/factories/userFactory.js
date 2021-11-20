@@ -7,7 +7,6 @@ import connection from '../database/database.js'
 faker.locale = 'pt_BR'
 
 const createUserFactory = async (userInfo) => {
-	console.log({userInfo})
 	const name = userInfo?.name || faker.name.firstName()
 	const email = userInfo?.email || faker.internet.email().toLowerCase()
 	const password = userInfo?.password || faker.internet.password()

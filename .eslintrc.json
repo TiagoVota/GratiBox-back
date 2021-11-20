@@ -26,5 +26,13 @@
             "never"
         ],
         "no-unused-vars": "off"
-    }
+    },
+		"overrides": [
+			{
+				"files": ["tests/*.test.js"], // Or *.spec.js
+				"rules": {
+					"no-undef": "off"
+				}
+			}
+		]
 }
