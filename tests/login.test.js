@@ -5,7 +5,7 @@ import app from '../src/app.js'
 import connection from '../src/database/database.js'
 import { clearTablesFactory } from '../src/factories/clearTablesFactory.js'
 import { createUserFactory } from '../src/factories/userFactory.js'
-import { signUpBodyFactory } from '../src/factories/bodyFactory.js'
+import { loginBodyFactory } from '../src/factories/bodyFactory.js'
 
 
 beforeEach(async () => {
@@ -19,29 +19,29 @@ afterAll(async () => {
 })
 
 
-describe('POST /sign-up', () => {
-	const invalidBody = signUpBodyFactory('invalid')
-	const conflictBody = signUpBodyFactory()
-	const validBody = signUpBodyFactory()
+describe('POST /login', () => {
+	const invalidBody = loginBodyFactory('invalid')
+	const unauthorizedBody = loginBodyFactory()
+	const validBody = loginBodyFactory()
 
 	test('Return 422 for invalid body', async () => {
-		await signUpTest(invalidBody, 422)
+		await loginTest(invalidBody, 422)
 	})
 
-	test('Return 409 for conflict body', async () => {
-		await createUserFactory(conflictBody)
-		await signUpTest(conflictBody, 409)
+	test('Return 401 for unauthorized body', async () => {
+		await loginTest(unauthorizedBody, 401)
 	})
-
-	test('Return 201 for correct body', async () => {
-		await signUpTest(validBody, 201)
+	
+	test('Return 200 for correct body', async () => {
+		await createUserFactory(validBody)
+		await loginTest(validBody, 200)
 	})
 })
 
 
-const signUpTest = async (body, status) => {
+const loginTest = async (body, status) => {
 	const result = await supertest(app)
-		.post('/sign-up')
+		.post('/login')
 		.send(body)
 
 	expect(result.status).toEqual(status)
