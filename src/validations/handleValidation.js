@@ -4,7 +4,8 @@
 	retornar se é válido ou não, então queria alguma sugestão para nome, pois
 	geralmente eu colocaria direto um "handleValidation" ou "isValid"
 */
-import { messages } from 'joi-translation-pt-br'
+import pkg from 'joi-translation-pt-br'
+const { messages } = pkg
 
 
 const theValidationProceeded = (params) => {
