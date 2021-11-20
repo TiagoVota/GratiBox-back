@@ -15,7 +15,7 @@ const sendSignUp = async (req, res) => {
 
 	const isValidSignUp = theValidationProceeded({
 		res,
-		status: 400,
+		status: 422,
 		objectToValid: singUpInfo,
 		objectValidation: validateSignUp
 	})

@@ -4,10 +4,6 @@
 	retornar se é válido ou não, então queria alguma sugestão para nome, pois
 	geralmente eu colocaria direto um "handleValidation" ou "isValid"
 */
-import pkg from 'joi-translation-pt-br'
-const { messages } = pkg
-
-
 const theValidationProceeded = (params) => {
 	const {
 		res, 
@@ -16,7 +12,7 @@ const theValidationProceeded = (params) => {
 		objectValidation
 	} = params
 
-	const objectError = objectValidation.validate(objectToValid, {messages}).error
+	const objectError = objectValidation.validate(objectToValid).error
 
 	if (objectError) res.status(status).send(objectError.details[0].message)
 
