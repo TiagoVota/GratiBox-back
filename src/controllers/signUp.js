@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt'
 
 import connection from '../database/database.js'
 import theValidationProceeded from '../validations/handleValidation.js'
-import validateSignUp from '../validations/signUp.js'
+import validateSignUp from '../validations/validation.signUp.js'
 
 
 const sendSignUp = async (req, res) => {
@@ -31,7 +31,7 @@ const sendSignUp = async (req, res) => {
 
 		await registerUser(name, lowerEmail, hash)
 
-		res.status(201).send({name, email: lowerEmail})
+		return res.status(201).send({name, email: lowerEmail})
 
 	} catch (error) {
 		console.log(error)
