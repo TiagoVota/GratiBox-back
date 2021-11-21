@@ -23,8 +23,8 @@ CREATE TABLE "plans" (
 
 CREATE TABLE "frequencies" (
 	"id" serial NOT NULL,
-	"week_day" varchar(42),
-	"mounth_day" varchar(42),
+	"week_day" integer UNIQUE,
+	"month_day" integer UNIQUE,
 	CONSTRAINT "frequencies_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -44,8 +44,8 @@ CREATE TABLE "products" (
 
 CREATE TABLE "sessions" (
 	"id" serial NOT NULL,
-	"token" uuid NOT NULL UNIQUE,
 	"user_id" integer NOT NULL UNIQUE,
+	"token" uuid NOT NULL UNIQUE,
 	CONSTRAINT "sessions_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -58,8 +58,8 @@ CREATE TABLE "subscriptions" (
 	"user_id" integer NOT NULL,
 	"plan_id" integer NOT NULL,
 	"frequency_id" integer NOT NULL,
-	"date_start" timestamp with time zone NOT NULL DEFAULT 'now()',
-	"date_end" timestamp with time zone,
+	"date_start" DATE NOT NULL DEFAULT 'now()',
+	"date_end" DATE,
 	CONSTRAINT "subscriptions_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
