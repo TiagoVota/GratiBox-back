@@ -1,8 +1,10 @@
 import cors from 'cors'
 import express from 'express'
 
+import auth from './middlewares/auth.js'
 import { sendSignUp } from './controllers/signUp.js'
 import { makeLogin } from './controllers/login.js'
+import { getPlanInfo } from './controllers/mySignature.js'
 
 
 const app = express()
@@ -20,6 +22,8 @@ app.get('/status', (_, res) => res.sendStatus(200))
 
 app.post('/sign-up', sendSignUp)
 app.post('/login', makeLogin)
+
+app.get('/my-signature', auth, getPlanInfo)
 
 
 export default app

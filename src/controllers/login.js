@@ -40,7 +40,8 @@ const makeLogin = async (req, res) => {
 			name: userData.name,
 			email: lowerEmail,
 			token,
-			isSubscriber: userData.is_subscriber
+			isSubscriber: true
+			// isSubscriber: userData.is_subscriber
 		}
 
 		return res.status(200).send(sendInfo)
