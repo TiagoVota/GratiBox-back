@@ -121,13 +121,8 @@ const makeDeliveryDates = (weekDay, monthDay) => {
 	return dates
 }
 
-const makeBaseMonth = (monthDay) => {
-	return dayjs().date(monthDay).format('YYYY-MM-DD')
-}
-
-const makeBaseWeekday = (weekDay) => {
-	return dayjs().day(weekDay).format('YYYY-MM-DD')
-}
+const makeBaseMonth = monthDay => dayjs().date(monthDay).format('YYYY-MM-DD')
+const makeBaseWeekday = weekDay => dayjs().day(weekDay).format('YYYY-MM-DD')
 
 const jumpWeekends = (date) => {
 	const weekday = date.day()
